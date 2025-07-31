@@ -7,6 +7,8 @@ use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\InnovationController;
 use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProgramController;
+
 
 // Authentication routes
 Route::post('/register', [AuthController::class, 'register']);
@@ -25,6 +27,9 @@ Route::get('/innovations/{id}', [InnovationController::class, 'show']);
 
 Route::get('/research', [ResearchController::class, 'index']);
 Route::get('/research/{id}', [ResearchController::class, 'show']);
+
+Route::get('/programs', [ProgramController::class, 'index']);
+Route::get('/programs/{id}', [ProgramController::class, 'show']);
 
 // Protected routes (only logged-in users can create, update, delete)
 Route::middleware('auth:sanctum')->group(function () {
@@ -47,6 +52,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/research', [ResearchController::class, 'store']);
     Route::put('/research/{id}', [ResearchController::class, 'update']);
     Route::delete('/research/{id}', [ResearchController::class, 'destroy']);
+
+    Route::post('/programs', [ProgramController::class, 'store']);
+    Route::put('/programs/{id}', [ProgramController::class, 'update']);
+    Route::delete('/programs/{id}', [ProgramController::class, 'destroy']);
 
     // Authenticated user info
     Route::get('/user', function (Request $request) {
